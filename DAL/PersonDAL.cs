@@ -43,6 +43,10 @@ namespace Malshinon
             {
                 Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
         }
 
         public void CreateAlert() { }
@@ -69,6 +73,10 @@ namespace Malshinon
                 }
             }
             catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
             }
