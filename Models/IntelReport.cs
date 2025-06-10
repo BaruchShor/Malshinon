@@ -28,5 +28,12 @@ namespace Malshinon
             this.DateTime = dateTime;
         }
 
+        public void ShowReport()
+        {
+            Console.WriteLine($"Report id : {this.ReporterId}:\n" +
+                              $"Target id : {this.TargetId}\n" +
+                              $"Text : {this.Text}\n" +
+                              $"Date time: {this.DateTime}");
+        }
     }
 }

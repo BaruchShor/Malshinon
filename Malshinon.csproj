@@ -95,7 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\IDAL.cs" />
+    <Compile Include="DAL\DAL.cs" />
     <Compile Include="Models\IntelReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
