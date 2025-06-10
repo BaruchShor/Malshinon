@@ -12,23 +12,26 @@ namespace Malshinon
         public List<Person> peopleList = new List<Person>();
 
         public void GetPersonByName(int firstname) {
-
+            this._conn.Open();
             this._query = "SELECT * FROME people WHERE firstname = @firstname";
             this.cmd = new MySqlCommand(this._query, this._conn);
             cmd.Parameters.AddWithValue("@agentId", firstname);
             getPerson(this._query);
-
+            this._conn.Close();
         }
 
         public void GetPersonBySecretCode(string secretCode) {
+            this._conn.Open();
             this._query = "SELECT * FROME people WHERE secretcode = @secretCode";
             this.cmd = new MySqlCommand(this._query, this._conn);
             cmd.Parameters.AddWithValue("@agentId", secretCode);
             getPerson(this._query);
+            this._conn.Close();
         }
 
         public void InsertNewPerson(Person person) {
-            this._query = "INSERT INTO people (firstName,lastName,type,numMentios,numReport) VALUES (@firstName,@lastName,@type,@numMentios,@numReport)";
+            this._conn.Open();
+            this._query = "INSERT INTO people (firstName,lastName,type,num_mentions,num_reports) VALUES (@firstName,@lastName,@type,@numMentios,@numReport)";
             try
             {
                 this.cmd = new MySqlCommand(this._query, this._conn);
@@ -47,6 +50,7 @@ namespace Malshinon
             {
                 Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
             }
+            this._conn.Close();
         }
 
         public void CreateAlert() { }
@@ -55,6 +59,7 @@ namespace Malshinon
 
         private List<Person> getPerson(string query)
         {
+
             this._query = query;
             this.cmd = new MySqlCommand(this._query, this._conn);
             MySqlDataReader reader = cmd.ExecuteReader();

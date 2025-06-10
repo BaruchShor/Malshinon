@@ -11,14 +11,53 @@ namespace Malshinon
     {
         public List<Person> reportsList = new List<Person>();
         public void InsertIntelReport(IntelReport report) {
-            this._query = "INSERT INTO intelreports (reportId,targetId,text) VALUES (@reportId, @targetId, @text)";
+            this._conn.Open();
+            this._query = "INSERT INTO intelreports (reporter_id,target_id,text) VALUES (@reportId, @targetId, @text)";
             try
             {
                 this.cmd = new MySqlCommand(this._query, this._conn);
-                cmd.Parameters.AddWithValue("@reportId", report.ReporterId);
-                cmd.Parameters.AddWithValue("@targetId", report.TargetId);
-                cmd.Parameters.AddWithValue("@text", report.Text);
-                cmd.ExecuteNonQuery();
+                this.cmd.Parameters.AddWithValue("@reportId", report.ReporterId);
+                this.cmd.Parameters.AddWithValue("@targetId", report.TargetId);
+                this.cmd.Parameters.AddWithValue("@text", report.Text);
+                this.cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+            this._conn.Close();
+        }
+
+        public void UpdateReportCount(int targetid) {
+            this._query = "UPDATE people SET num_reports = num_mentions + 1 WHERE id = @targetId";
+            try
+            {
+                this.cmd = new MySqlCommand(this._query, this._conn);
+                this.cmd.Parameters.AddWithValue("@targetId", targetid);
+                this.cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+
+        }
+
+        public void UpdateMentionCount(int targetid) {
+            this._query = "UPDATE intelreports SET num_mentions = num_mentions + 1 WHERE id = @targetId";
+            try
+            {
+                this.cmd = new MySqlCommand(this._query, this._conn);
+                this.cmd.Parameters.AddWithValue("@targetId", targetid);
+                this.cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
@@ -29,10 +68,6 @@ namespace Malshinon
                 Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
             }
         }
-
-        public void UpdateReportCount() { }
-
-        public void UpdateMentionCount() { }
 
         public void GetReporterStats() { }
 

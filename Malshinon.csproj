@@ -95,9 +95,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\IDAL.cs" />
     <Compile Include="Models\IntelReport.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="PersonDAL\PersonDAL.cs" />
+    <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="DAL\ReportsDAL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,5 +107,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

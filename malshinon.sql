@@ -33,8 +33,6 @@ CREATE TABLE `intelreports` (
   `target_id` int(11) DEFAULT NULL,
   `text` text DEFAULT NULL,
   `timestamp` datetime DEFAULT current_timestamp(),
-  `num_reports` int(11) DEFAULT 0,
-  `num_mentions` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
