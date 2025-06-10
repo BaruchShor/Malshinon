@@ -10,11 +10,8 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
-            PersonDAL personDAL = new PersonDAL();
-            personDAL.GetPersonByName("ppp");
-            Console.WriteLine(personDAL.peopleList.Count());
-            personDAL.GetPersonBySecretCode("dddd");
-
+            MalshinimManager yy = new MalshinimManager("Baruch", "Shor");
+            Console.WriteLine(yy.CreateSecretCode());
         }
     }
 }

@@ -13,16 +13,28 @@ namespace Malshinon
 
         public void GetPersonByName(string firstname) {
             this._conn.Open();
-            string query = $"SELECT * FROM people WHERE firstName = '{firstname}'";
-            getPerson(query);
+            this.localQuery = $"SELECT * FROM people WHERE firstName = '{firstname}'";
+            getPerson(this.localQuery);
             this._conn.Close();
         }
 
         public void GetPersonBySecretCode(string secretCode) {
             this._conn.Open();
-            this._query = $"SELECT * FROM people WHERE secret_code = '{secretCode}'";
-            getPerson(this._query);
+            this.localQuery = $"SELECT * FROM people WHERE secret_code = '{secretCode}'";
+            getPerson(this.localQuery);
             this._conn.Close();
+        }
+
+        public void UpdateReportCount(int malshintid)
+        {
+            this.localQuery = $"UPDATE people SET num_reports = num_reports + 1 WHERE id = '{malshintid}'";
+            UpdateStatusPerson(this.localQuery);
+        }
+
+        public void UpdateMentionCount(int targetid)
+        {
+            this.localQuery = $"UPDATE people SET num_mentions = num_mentions + 1 WHERE id = '{targetid}'";
+            UpdateStatusPerson(this.localQuery);
         }
 
         public void InsertNewPerson(Person person) {
@@ -84,14 +96,23 @@ namespace Malshinon
             return this.peopleList;
         }
 
-        public void ShowPeopleList()
+        public void UpdateStatusPerson(string localQuery)
         {
-            foreach(Person person in this.peopleList)
+            this._query = localQuery;
+            try
             {
-                person.ShowPerson();
+                this.cmd = new MySqlCommand(this._query, this._conn);
+                this.cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! {ex.GetType()} : {ex.Message}");
             }
         }
-
 
     }
 }

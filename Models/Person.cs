@@ -33,13 +33,14 @@ namespace Malshinon
             this.Type = type;
         }
 
-        public Person(string firstName, string lastName, string type, int numReport, int numMentios)
+        public Person(string firstName, string lastName, int numReport, int numMentios, string SecretCode, string type)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.Type = type;
             this.NumReports = numReport;
             this.NumMentions = numMentios;
+            this.SecretCode = SecretCode;
+            this.Type = type;
         }
 
         public void ShowPerson()
