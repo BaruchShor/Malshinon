@@ -6,6 +6,7 @@ namespace Malshinon
     {
         public string connStr { get; set; }
         public string _query { get; set; }
+        public string localQuery { get; set; }
         public MySqlConnection _conn { get; set; }
         public MySqlCommand cmd { get; set; }
 
