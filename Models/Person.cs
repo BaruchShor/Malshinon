@@ -8,6 +8,8 @@ namespace Malshinon
 {
     internal class Person
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -20,15 +22,24 @@ namespace Malshinon
 
         public int NumMentions { get; set; }
 
-        public Person(string firstName, string lastName, string SecretCode, string type, int numReport, int numMentios)
+        public Person(int id, string firstName, string lastName, int numMentios, int numReport, string SecretCode, string type)
+        {
+            this.Id = id;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.NumMentions = numMentios;
+            this.NumReports = numReport;
+            this.SecretCode = SecretCode;
+            this.Type = type;
+        }
+
+        public Person(string firstName, string lastName, string type, int numReport, int numMentios)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.SecretCode = SecretCode;
             this.Type = type;
             this.NumReports = numReport;
             this.NumMentions = numMentios;
         }
-
     }
 }
