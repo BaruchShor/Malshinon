@@ -8,7 +8,10 @@ namespace Malshinon
 {
     internal class ReportsDAL : DAL
     {
-        public void InsertIntelReport() { }
+        public List<Person> reportsList = new List<Person>();
+        public void InsertIntelReport() {
+            
+        }
 
         public void UpdateReportCount() { }
 
