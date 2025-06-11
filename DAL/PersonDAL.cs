@@ -14,14 +14,14 @@ namespace Malshinon
         public void GetPersonByFullName(string firstname, string lastName) {
             this._conn.Open();
             this.localQuery = $"SELECT * FROM people WHERE firstName = '{firstname}' AND lastName = '{lastName}'";
-            getPerson(this.localQuery);
+            GetPerson(this.localQuery);
             this._conn.Close();
         }
 
         public void GetPersonBySecretCode(string secretCode) {
             this._conn.Open();
             this.localQuery = $"SELECT * FROM people WHERE secret_code = '{secretCode}'";
-            getPerson(this.localQuery);
+            GetPerson(this.localQuery);
             this._conn.Close();
         }
 
@@ -45,15 +45,16 @@ namespace Malshinon
 
         public void InsertNewPerson(Person person) {
             this._conn.Open();
-            this._query = "INSERT INTO people (firstName,lastName,type,num_mentions,num_reports) VALUES (@firstName,@lastName,@type,@numMentios,@numReport)";
+            this._query = "INSERT INTO people (firstName,lastName,num_mentions,num_reports,secret_code, type) VALUES (@firstName,@lastName,@numMentios,@numReport,@secretCode,@type)";
             try
             {
                 this.cmd = new MySqlCommand(this._query, this._conn);
                 this.cmd.Parameters.AddWithValue("@firstName", person.FirstName);
                 this.cmd.Parameters.AddWithValue("@lastName", person.LastName);
-                this.cmd.Parameters.AddWithValue("@type", person.Type);
                 this.cmd.Parameters.AddWithValue("@numMentios", person.NumMentions);
                 this.cmd.Parameters.AddWithValue("@numReport", person.NumReports);
+                this.cmd.Parameters.AddWithValue("@secretCode", person.SecretCode);
+                this.cmd.Parameters.AddWithValue("@type", person.Type);
                 this.cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -71,7 +72,7 @@ namespace Malshinon
 
         public void GetAlerts() { }
 
-        private List<Person> getPerson(string query)
+        private List<Person> GetPerson(string query)
         {
 
             this._query = query;

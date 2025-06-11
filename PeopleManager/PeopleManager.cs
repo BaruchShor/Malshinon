@@ -25,7 +25,10 @@ namespace Malshinon
             this.LastName = lastName;
             this.SecretCode = CreateSecretCode();
             GetPersonByFullName(this.FirstName, this.LastName);
-            this.ReportsSelected.GetReportsByTargetId(peopleList[0].Id);
+            if(peopleList.Count() > 0)
+            {
+                this.ReportsSelected.GetReportsByTargetId(peopleList[0].Id);
+            }
         }
 
         public bool IsExsist()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Malshinon
 {
-    internal class AddingReports
+    internal class AddingReports : ReportsDAL
     {
         public MalshinimManager Malshin { get; set; }
         public TargetsManager Target { get; set; }
@@ -20,7 +20,7 @@ namespace Malshinon
 
         public string[] SystemMesseges = { "Please enter full Malshin name.", "Please enter a full target name.", "Please enter the full report." };
 
-        public string[] Keywords = { "MalshinFirstName", "MalshinLastName", "TargetFirstName", "TargetlastName", "Text" };
+        public string[] Keywords = { "MalshinFirstName", "MalshinLastName", "TargetFirstName", "TargetLastName", "Text" };
 
         public AddingReports()
         {
@@ -52,7 +52,7 @@ namespace Malshinon
             }
             catch(Exception ex)
             {
-                Console.WriteLine($"Error! : {ex.GetType()} 1:::: {ex.Message}");
+                Console.WriteLine($"Error! : {ex.GetType()} :::: {ex.Message}");
             }
 
             return this.MalshinData;
@@ -69,24 +69,24 @@ namespace Malshinon
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error! : { ex.GetType()} 2:::: { ex.Message}");
+                Console.WriteLine($"Error! : { ex.GetType()} :::: { ex.Message}");
             }
             return this.ReportData;
         }
 
-        public IntelReport CreateReport()
+        public void CreateReport()
         {
             this.NewReport = new IntelReport(Malshin.GetIdFromPersonBySecretCode(), Target.GetIdFromPersonBySecretCode(), this.ReportData["Text"]);
-            return this.NewReport;
+            InsertIntelReport(NewReport);
         }
 
         public void DisplaySystem()
         {
             GetDataFromMalshin();
             MalshinDataOrganizer();
-            Malshin = new MalshinimManager(this.ReportData["MalshinFirstName"], this.ReportData["MalshinLastName"]);
+            this.Malshin = new MalshinimManager(this.ReportData["MalshinFirstName"], this.ReportData["MalshinLastName"]);
             this.Malshin.RunManageSystem();
-            Target = new TargetsManager(this.ReportData["TargetFirstName"], this.ReportData["TargetLastName"]);
+            this.Target = new TargetsManager(this.ReportData["TargetFirstName"], this.ReportData["TargetLastName"]);
             this.Target.RunManageSystem();
             CreateReport();
         }
