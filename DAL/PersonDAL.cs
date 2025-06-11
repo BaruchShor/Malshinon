@@ -11,9 +11,9 @@ namespace Malshinon
     {
         public List<Person> peopleList = new List<Person>();
 
-        public void GetPersonByName(string firstname) {
+        public void GetPersonByFullName(string firstname, string lastName) {
             this._conn.Open();
-            this.localQuery = $"SELECT * FROM people WHERE firstName = '{firstname}'";
+            this.localQuery = $"SELECT * FROM people WHERE firstName = '{firstname}' AND lastName = '{lastName}'";
             getPerson(this.localQuery);
             this._conn.Close();
         }

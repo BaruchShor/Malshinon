@@ -6,28 +6,12 @@ using System.Threading.Tasks;
 
 namespace Malshinon
 {
-    internal class MalshinimManager : PersonDAL
+    internal class MalshinimManager : PeopleManager
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string SicretCode { get; set; }
         public Person Malshin { get; set; }
-        public Person Target { get; set; }
 
-        public MalshinimManager(string firstName, string lastName)
+        public MalshinimManager(string firstName, string lastName) : base(firstName, lastName)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            GetPersonByName(this.FirstName);
-        }
-
-        public bool IsExsist()
-        {
-            if (this.peopleList.Count() == 1)
-            {
-                return true;
-            }
-            return false;
         }
 
         public void CreateMalshin()
@@ -36,61 +20,18 @@ namespace Malshinon
             InsertNewPerson(this.Malshin);
         }
 
-        public void CreateTarget()
-        {
-            this.Target = new Person(this.FirstName, this.LastName, 0, 1, CreateSecretCode(), "target");
-            InsertNewPerson(this.Target);
-        }
-
         public void UpdateReportsMalshin()
         {
             UpdateReportCount(peopleList[0].Id);
         }
 
-        public void UpdateMentionTarget()
-        {
-            UpdateMentionCount(peopleList[0].Id);
-        }
-
-        public void UpdateTypePerson()
+        public void UpdateTypeMalshin()
         {
             if (peopleList[0].NumMentions > 0)
             {
                 UpdateType(peopleList[0].Id, "both");
             }else if(peopleList[0].NumReports > 10)
             UpdateType(peopleList[0].Id,"");
-        }
-
-        public string CreateSecretCode()
-        {
-            Random random = new Random();
-            int randomNum = 0;
-            do
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        randomNum = random.Next(65, 90);
-                        this.SicretCode += (char)randomNum;
-                    }
-                    else
-                    {
-                        randomNum = random.Next(97, 122);
-                        this.SicretCode += (char)randomNum;
-                    }
-                }
-                GetPersonBySecretCode(this.SicretCode);
-            } while (peopleList.Count() != 0);
-            return this.SicretCode;
-        }
-
-        public void ShowPeopleList()
-        {
-            foreach (Person person in this.peopleList)
-            {
-                person.ShowPerson();
-            }
         }
     }
 }

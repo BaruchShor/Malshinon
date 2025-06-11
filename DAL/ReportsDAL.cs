@@ -79,15 +79,6 @@ namespace Malshinon
 
         public void GetTargetStats() { }
 
-        public bool IsTheTargetDangerous() {
-            TimeSpan disdans = this.reportsList[0].DateTime - this.reportsList[reportsList.Count() - 1].DateTime;
-            if(disdans.TotalMinutes <= 15)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public void ShowReportsList()
         {
             foreach(IntelReport report in this.reportsList)
