@@ -10,8 +10,8 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
-            MalshinimManager yy = new MalshinimManager("Baruch", "Shor");
-            Console.WriteLine(yy.CreateSecretCode());
+            AddingReports ReportSystem = new AddingReports();
+            ReportSystem.DisplaySystem();
         }
     }
 }

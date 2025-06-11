@@ -61,6 +61,12 @@ namespace Malshinon
             return this.SicretCode;
         }
 
+        public int GetIdFromPersonBySecretCode()
+        {
+            GetPersonBySecretCode(this.SecretCode);
+            return this.peopleList[0].Id;
+        }
+
         public void ShowPeopleList()
         {
             foreach (Person person in this.peopleList)

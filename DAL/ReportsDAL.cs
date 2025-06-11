@@ -10,7 +10,7 @@ namespace Malshinon
     internal class ReportsDAL : DAL
     {
         public List<IntelReport> reportsList = new List<IntelReport>();
-        private IntelReport report { get; set; }
+
         public void InsertIntelReport(IntelReport report) {
             this._conn.Open();
             this._query = "INSERT INTO intelreports (reporter_id,target_id,text) VALUES (@reportId, @targetId, @text)";
@@ -66,7 +66,5 @@ namespace Malshinon
             }
             return this.reportsList;
         }
-
-        public void GetTargetStats() { }
     }
 }

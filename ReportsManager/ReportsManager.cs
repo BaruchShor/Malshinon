@@ -8,7 +8,6 @@ namespace Malshinon
 {
     internal class ReportsManager : ReportsDAL
     {
-
         public int GetReporterStats()
         {
             int sumWords = 0;

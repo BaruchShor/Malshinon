@@ -43,6 +43,8 @@ namespace Malshinon
             return peopleList.Count();
         }
 
+        public void GetTargetStats() { }
+
         public bool IsTheTargetDangerous()
         {
             if (this.ReportsSelected.GetMinuteDifference() <= 15 && GetNumMention() >= 3)
