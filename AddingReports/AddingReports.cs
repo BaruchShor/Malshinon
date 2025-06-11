@@ -33,12 +33,18 @@ namespace Malshinon
                 for (int i = 0; i < this.SystemMesseges.Length; i++)
                 {
                     Console.WriteLine($":::::::::::::::::::::::::::::::::::::::::\n" +
-                      $"::::: {this.SystemMesseges[i]}. :::::\n" +
+                      $"      {this.SystemMesseges[i]}.      \n" +
                       $":::::::::::::::::::::::::::::::::::::::::");
                     this.MalshinInput = Console.ReadLine();
                     if(i != this.SystemMesseges.Length - 1)
                     {
                         this.TempData = this.MalshinInput.Split(' ');
+                        if(this.TempData.Length != 2)
+                        {
+                            i--;
+                            Console.WriteLine($"!=== Full name must contain one first name and one last name. ===!");
+                            continue;
+                        }
                         foreach (string data in TempData)
                         {
                             this.MalshinData.Add(data);
