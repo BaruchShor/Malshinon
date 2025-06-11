@@ -12,12 +12,15 @@ namespace Malshinon
         public string LastName { get; set; }
         public string SicretCode { get; set; }
 
+        public ReportsManager ReportsSelected = new ReportsManager();
+
 
         public PeopleManager(string firstName, string lastName)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
             GetPersonByFullName(this.FirstName, this.LastName);
+            this.ReportsSelected.GetReportsByTargetId(peopleList[0].Id);
         }
 
         public bool IsExsist()

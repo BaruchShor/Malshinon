@@ -30,8 +30,8 @@ namespace Malshinon
             if (peopleList[0].NumMentions > 0)
             {
                 UpdateType(peopleList[0].Id, "both");
-            }else if(peopleList[0].NumReports > 10)
-            UpdateType(peopleList[0].Id,"");
+            }else if(peopleList[0].NumReports > 10 && this.ReportsSelected.GetReporterStats() >= 100)
+            UpdateType(peopleList[0].Id, "potential_agent");
         }
     }
 }

@@ -10,11 +10,8 @@ namespace Malshinon
     {
         public Person Target { get; set; }
 
-        public ReportsDAL ReportsSelected = new ReportsDAL();
-
         public TargetsManager(string firstName, string lastName) : base(firstName, lastName)
         {
-            this.ReportsSelected.GetReportsByTargetId(peopleList[0].Id);
         }
 
         public void CreateTarget()
@@ -30,15 +27,14 @@ namespace Malshinon
 
         public bool IsTheTargetDangerous()
         {
-            TimeSpan disdans = ReportsSelected.reportsList[0].DateTime - ReportsSelected.reportsList[ReportsSelected.reportsList.Count() - 1].DateTime;
-            if (disdans.TotalMinutes <= 15)
+            if (this.ReportsSelected.GetMinuteDifference() <= 15)
             {
                 return true;
             }
             return false;
         }
 
-        public void UpdateTypeMalshin()
+        public void UpdateTypeTarget()
         {
             if (peopleList[0].NumReports > 0)
             {

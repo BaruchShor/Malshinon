@@ -35,7 +35,7 @@ namespace Malshinon
 
         public void GetReportsByTargetId(int targetId)
         {
-            this.localQuery = $"SELECT * FROM intelreports WHERE target_id = '{targetId}'";
+            this.localQuery = $"SELECT * FROM intelreports WHERE target_id = '{targetId}' ORDER BY timestamp DESC";
             GetReports(this.localQuery);
         }
 
@@ -67,24 +67,6 @@ namespace Malshinon
             return this.reportsList;
         }
 
-        public int GetReporterStats() {
-            int sumWords = 0;
-            foreach (IntelReport report in reportsList)
-            {
-                sumWords += (report.Text).Split(' ').Length;
-            }
-
-            return sumWords / reportsList.Count;
-        }
-
         public void GetTargetStats() { }
-
-        public void ShowReportsList()
-        {
-            foreach(IntelReport report in this.reportsList)
-            {
-                report.ShowReport();
-            }
-        }
     }
 }
