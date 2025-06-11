@@ -8,6 +8,7 @@ namespace Malshinon
 {
     internal class IntelReport
     {
+        public int Id { get; set; }
         public int ReporterId { get; set; }
         public int TargetId { get; set; }
         public string Text { get; set; }
@@ -20,8 +21,9 @@ namespace Malshinon
             this.Text = text;
         }
 
-        public IntelReport(int reportId, int targetId, string text, DateTime dateTime)
+        public IntelReport(int id, int reportId, int targetId, string text, DateTime dateTime)
         {
+            this.Id = id;
             this.ReporterId = reportId;
             this.TargetId = targetId;
             this.Text = text;

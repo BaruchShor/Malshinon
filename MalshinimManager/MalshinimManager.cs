@@ -42,14 +42,23 @@ namespace Malshinon
             InsertNewPerson(this.Target);
         }
 
-        public void UpdateMalshin()
+        public void UpdateReportsMalshin()
         {
-            UpdateReportCount(peopleList[1].Id);
+            UpdateReportCount(peopleList[0].Id);
         }
 
-        public void UpdateTarget()
+        public void UpdateMentionTarget()
         {
-            UpdateMentionCount(peopleList[1].Id);
+            UpdateMentionCount(peopleList[0].Id);
+        }
+
+        public void UpdateTypePerson()
+        {
+            if (peopleList[0].NumMentions > 0)
+            {
+                UpdateType(peopleList[0].Id, "both");
+            }else if(peopleList[0].NumReports > 10)
+            UpdateType(peopleList[0].Id,"");
         }
 
         public string CreateSecretCode()

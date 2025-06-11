@@ -37,6 +37,12 @@ namespace Malshinon
             UpdateStatusPerson(this.localQuery);
         }
 
+        public void UpdateType(int targetid, string newType)
+        {
+            this.localQuery = $"UPDATE people SET type = '{newType}' WHERE id = '{targetid}'";
+            UpdateStatusPerson(this.localQuery);
+        }
+
         public void InsertNewPerson(Person person) {
             this._conn.Open();
             this._query = "INSERT INTO people (firstName,lastName,type,num_mentions,num_reports) VALUES (@firstName,@lastName,@type,@numMentios,@numReport)";

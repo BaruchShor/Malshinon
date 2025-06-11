@@ -10,6 +10,7 @@ namespace Malshinon
     internal class ReportsDAL : DAL
     {
         public List<IntelReport> reportsList = new List<IntelReport>();
+        private IntelReport report { get; set; }
         public void InsertIntelReport(IntelReport report) {
             this._conn.Open();
             this._query = "INSERT INTO intelreports (reporter_id,target_id,text) VALUES (@reportId, @targetId, @text)";
@@ -32,9 +33,60 @@ namespace Malshinon
             this._conn.Close();
         }
 
-        public void GetReporterStats() { }
+        public void GetReportsByTargetId(int targetId)
+        {
+            this.localQuery = $"SELECT * FROM intelreports WHERE target_id = '{targetId}'";
+            GetReports(this.localQuery);
+        }
+
+        public List<IntelReport> GetReports(string localQuery)
+        {
+            this._query = localQuery;
+            try
+            {
+                this.cmd = new MySqlCommand(this._query, this._conn);
+                MySqlDataReader reader =  cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32("id"); 
+                    int reporter_id = reader.GetInt32("id"); 
+                    int target_id = reader.GetInt32("id"); 
+                    string text = reader.GetString("text"); 
+                    DateTime timestamp = reader.GetDateTime("timestamp");
+                    reportsList.Add(new IntelReport(id, reporter_id, target_id, text, timestamp));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error! : {ex.GetType()} == {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! : {ex.GetType()} == {ex.Message}");
+            }
+            return this.reportsList;
+        }
+
+        public int GetReporterStats() {
+            int sumWords = 0;
+            foreach (IntelReport report in reportsList)
+            {
+                sumWords += (report.Text).Split(' ').Length;
+            }
+
+            return sumWords / reportsList.Count;
+        }
 
         public void GetTargetStats() { }
+
+        public bool IsTheTargetDangerous() {
+            TimeSpan disdans = this.reportsList[0].DateTime - this.reportsList[reportsList.Count() - 1].DateTime;
+            if(disdans.TotalMinutes <= 15)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public void ShowReportsList()
         {
