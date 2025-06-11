@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Malshinon
 {
-    internal class PeopleManager : PersonDAL
+    internal abstract class PeopleManager : PersonDAL
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SicretCode { get; set; }
+        public int NumReports { get; set; }
+        public int NumMentions { get; set; }
+        public string SecretCode { get; set; }
+        public string Type { get; set; }
 
         public ReportsManager ReportsSelected = new ReportsManager();
 
@@ -19,6 +23,7 @@ namespace Malshinon
         {
             this.FirstName = firstName;
             this.LastName = lastName;
+            this.SecretCode = CreateSecretCode();
             GetPersonByFullName(this.FirstName, this.LastName);
             this.ReportsSelected.GetReportsByTargetId(peopleList[0].Id);
         }
@@ -63,5 +68,8 @@ namespace Malshinon
                 person.ShowPerson();
             }
         }
-    }
+
+        public abstract void RunManageSystem();
+
+    } 
 }

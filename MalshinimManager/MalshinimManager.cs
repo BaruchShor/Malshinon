@@ -12,11 +12,14 @@ namespace Malshinon
 
         public MalshinimManager(string firstName, string lastName) : base(firstName, lastName)
         {
+            this.NumReports = 1;
+            this.NumMentions = 0;
+            this.Type = "reporter";
         }
 
         public void CreateMalshin()
         {
-            this.Malshin = new Person(this.FirstName, this.LastName, 1, 0, CreateSecretCode(), "reporter");
+            this.Malshin = new Person(this.FirstName, this.LastName, this.NumReports, this.NumMentions, this.SecretCode, this.Type);
             InsertNewPerson(this.Malshin);
         }
 
@@ -29,9 +32,26 @@ namespace Malshinon
         {
             if (peopleList[0].NumMentions > 0)
             {
-                UpdateType(peopleList[0].Id, "both");
+                this.Type = "both";
+                UpdateType(peopleList[0].Id, this.Type);
             }else if(peopleList[0].NumReports > 10 && this.ReportsSelected.GetReporterStats() >= 100)
-            UpdateType(peopleList[0].Id, "potential_agent");
+            {
+                this.Type = "potential_agent";
+                UpdateType(peopleList[0].Id, this.Type);
+            }
+        }
+
+        public override void RunManageSystem()
+        {
+            if (IsExsist())
+            {
+                UpdateReportsMalshin();
+                UpdateTypeMalshin();
+            }
+            else
+            {
+                CreateMalshin();
+            }
         }
     }
 }
