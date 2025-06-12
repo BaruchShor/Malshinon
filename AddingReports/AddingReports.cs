@@ -102,15 +102,17 @@ namespace Malshinon
             InsertIntelReport(NewReport);
         }
 
-        public void DisplaySystem()
+        public void DisplayAddReportSystem()
         {
             GetDataFromMalshin();
             MalshinDataOrganizer();
-            this.Malshin = new MalshinimManager(this.ReportData["MalshinFirstName"], this.ReportData["MalshinLastName"]);
-            this.Malshin.RunManageSystem();
-            this.Target = new TargetsManager(this.ReportData["TargetFirstName"], this.ReportData["TargetLastName"]);
-            this.Target.RunManageSystem();
+            this.Malshin = new MalshinimManager(this.ReportData[this.MalshinFirstNameKey], this.ReportData[this.MalshinLastNameKey]);
+            this.Malshin.RunManageLocalSystem();
+            this.Target = new TargetsManager(this.ReportData[this.TargetFirstNameKey], this.ReportData[this.TargetLastNameKey]);
+            this.Target.RunManageLocalSystem();
             CreateReport();
+
+            Console.WriteLine($"!!!::: Report update successful. :::!!!");
         }
     }
 }

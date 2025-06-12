@@ -25,6 +25,54 @@ namespace Malshinon
             this._conn.Close();
         }
 
+        public void GetAllMalshinim()
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE type = 'reporter' OR type = 'both' or type = 'potential_agent'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
+        public void GetAllPotentialAgents()
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE type = 'potential_agent'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
+        public void GetMalshinById(int id)
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'reporter' OR type = 'both' or type = 'potential_agent'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
+        public void GetAllTargets()
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE type = 'target' OR type = ,'both'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
+        public void GetTargetById(int id)
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'target' OR type = ,'both'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
+        public void Get(int id)
+        {
+            this._conn.Open();
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' type = 'target'";
+            GetPerson(this.localQuery);
+            this._conn.Close();
+        }
+
         public void UpdateReportCount(int malshintid)
         {
             this.localQuery = $"UPDATE people SET num_reports = num_reports + 1 WHERE id = '{malshintid}'";

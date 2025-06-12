@@ -41,7 +41,7 @@ namespace Malshinon
             }
         }
 
-        public override void RunManageSystem()
+        public override void RunManageLocalSystem()
         {
             if (IsExsist())
             {

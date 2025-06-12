@@ -78,7 +78,7 @@ namespace Malshinon
             }
         }
 
-        public abstract void RunManageSystem();
+        public abstract void RunManageLocalSystem();
 
     } 
 }

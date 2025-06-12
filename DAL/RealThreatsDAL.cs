@@ -10,12 +10,8 @@ namespace Malshinon
     internal class RealThreatsDAL : DAL
     {
         public List<RealThreats> realThreatsList = new List<RealThreats>();
-        public RealThreatsDAL()
-        {
 
-        }
-
-        public void InsertIntelReport(RealThreats realThreats)
+        public void InsertRealThreats(RealThreats realThreats)
         {
             this._conn.Open();
             this._query = "INSERT INTO real_threats (target_id,alert_reason) VALUES (@targetId, @alertReason)";
@@ -42,9 +38,10 @@ namespace Malshinon
             this.localQuery = $"SELECT * FROM real_threats";
             GetRealThreats(this.localQuery);
         }
+
         public void GetRealThreatsByTargetId(int targetId)
         {
-            this.localQuery = $"SELECT * FROM real_threats WHERE target_id = '{targetId}'";
+            this.localQuery = $"SELECT * FROM real_threats r JOIN people p ON r.target_id = p.id WHERE r.target_id = '{targetId}'";
             GetRealThreats(this.localQuery);
         }
 
@@ -59,8 +56,10 @@ namespace Malshinon
                 {
                     int id = reader.GetInt32("id");
                     int targetId = reader.GetInt32("target_id");
+                    string targetFirstName = reader.GetString("firstName");
+                    string targetLastName = reader.GetString("lastName");
                     string alertReason = reader.GetString("alert_reason");
-                    this.realThreatsList.Add(new RealThreats(id, targetId, alertReason));
+                    this.realThreatsList.Add(new RealThreats(id, targetId, targetFirstName, targetLastName, alertReason));
                 }
             }
             catch (MySqlException ex)

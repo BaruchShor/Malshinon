@@ -10,12 +10,16 @@ namespace Malshinon
     {
         public int Id { get; set; }
         public int TargetId { get; set; }
+        public string TargetFirstName { get; set; }
+        public string TargetLastName { get; set; }
         public string AlertReason { get; set; }
 
-        public RealThreats(int id, int targetId, string alertReason)
+        public RealThreats(int id, int targetId, string firstName, string lastName, string alertReason)
         {
             this.Id = id;
             this.TargetId = targetId;
+            this.TargetFirstName = firstName;
+            this.TargetLastName = lastName;
             this.AlertReason = alertReason;
         }
 
@@ -27,9 +31,10 @@ namespace Malshinon
 
         public void ShowRealThreats()
         {
-            Console.WriteLine($"Report id : {this.Id} :\n" +
+            Console.WriteLine($"Report Real Threats id : {this.Id} :\n" +
                               $"Target id : {this.TargetId} :\n" +
-                              $"Text : {this.AlertReason} :\n");
+                              $"Target full name : {this.TargetFirstName} + {this.TargetLastName}" +
+                              $"Alert reason : {this.AlertReason} :\n");
         }
     }
 }
