@@ -99,6 +99,3 @@ This README covers:
 - SQL schema hints
 - Tips and contribution instructions
 
-Let me know if you'd like help with more details—screenshots, dependency versions, or releasing via GitHub Releases!
-::contentReference[oaicite:0]{index=0}
-
