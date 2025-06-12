@@ -1,5 +1,7 @@
 # Malshinon
 
+![Destroyed Gaza scene](ChatGPT%20Image%20Jun%2013,%202025,%2002_25_31%20AM.png)
+
 **Malshinon** – A simple intelligence-reporting console app built in C# with MySQL integration.
 
 ## 🔎 Description
