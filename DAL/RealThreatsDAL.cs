@@ -35,14 +35,18 @@ namespace Malshinon
 
         public void GetAllRealThreats()
         {
+            _conn.Open();
             this.localQuery = $"SELECT * FROM real_threats";
             GetRealThreats(this.localQuery);
+            _conn.Close();
         }
 
         public void GetRealThreatsByTargetId(int targetId)
         {
+            _conn.Open();
             this.localQuery = $"SELECT * FROM real_threats r JOIN people p ON r.target_id = p.id WHERE r.target_id = '{targetId}'";
             GetRealThreats(this.localQuery);
+            _conn.Close();
         }
 
         public List<RealThreats> GetRealThreats(string localQuery)

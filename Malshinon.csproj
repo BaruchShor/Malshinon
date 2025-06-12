@@ -97,15 +97,20 @@
   <ItemGroup>
     <Compile Include="AddingReports\AddingReports.cs" />
     <Compile Include="DAL\DAL.cs" />
+    <Compile Include="DAL\RealThreatsDAL.cs" />
     <Compile Include="Iperson\Iperson.cs" />
+    <Compile Include="LogIn\Login.cs" />
     <Compile Include="MalshinimManager\MalshinimManager.cs" />
+    <Compile Include="MenuSystem\MenuSystem.cs" />
     <Compile Include="Models\IntelReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\ReportsDAL.cs" />
+    <Compile Include="Models\RealThreats.cs" />
     <Compile Include="PeopleManager\PeopleManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealThreatsManager\RealThreatsManager.cs" />
     <Compile Include="ReportsManager\ReportsManager.cs" />
     <Compile Include="TargetsManager\TargetsManager.cs" />
   </ItemGroup>

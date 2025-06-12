@@ -35,20 +35,26 @@ namespace Malshinon
 
         public void GetAllReports()
         {
+            _conn.Open();
             this.localQuery = $"SELECT * FROM intelreports ORDER BY timestamp DESC";
             GetReports(this.localQuery);
+            _conn.Close();
         }
 
         public void GetReportsByMalshinId(int malshinId)
         {
+            _conn.Open();
             this.localQuery = $"SELECT * FROM intelreports WHERE reporter_id = '{malshinId}' ORDER BY timestamp DESC";
             GetReports(this.localQuery);
+            _conn.Close();
         }
 
         public void GetReportsByTargetId(int targetId)
         {
+            _conn.Open();
             this.localQuery = $"SELECT * FROM intelreports WHERE target_id = '{targetId}' ORDER BY timestamp DESC";
             GetReports(this.localQuery);
+            _conn.Close();
         }
 
         public List<IntelReport> GetReports(string localQuery)
