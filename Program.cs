@@ -10,6 +10,8 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
+            AddingReports ReportSystem = new AddingReports();
+            ReportSystem.DisplaySystem();
         }
     }
 }
