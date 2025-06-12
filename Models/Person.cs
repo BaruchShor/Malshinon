@@ -39,12 +39,13 @@ namespace Malshinon
 
         public void ShowPerson()
         {
-            Console.WriteLine($"First name : {this.FirstName}:\n" +
-                              $"Last name : {this.LastName}\n" +
-                              $"Num mentions : {this.NumMentions}\n" +
-                              $"Num reports : {this.NumReports}\n" +
-                              $"Secret code : {this.SecretCode}\n" +
-                              $"Type : {this.Type}");
+            Console.WriteLine($"First name   :: {this.FirstName}:\n" +
+                              $"Last name    :: {this.LastName}:\n" +
+                              $"Num mentions :: {this.NumMentions}:\n" +
+                              $"Num reports  :: {this.NumReports}:\n" +
+                              $"Secret code  :: {this.SecretCode}:\n" +
+                              $"Type         :: {this.Type}:\n" +
+                              $"-----------------------------------------------\n");
         }
     }
 }

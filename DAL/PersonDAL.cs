@@ -44,7 +44,7 @@ namespace Malshinon
         public void GetMalshinById(int id)
         {
             this._conn.Open();
-            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'reporter' OR type = 'both' or type = 'potential_agent'";
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type IN( 'reporter', 'both', 'potential_agent')";
             GetPerson(this.localQuery);
             this._conn.Close();
         }
@@ -60,7 +60,7 @@ namespace Malshinon
         public void GetTargetById(int id)
         {
             this._conn.Open();
-            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'target' OR type = 'both'";
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type IN ('target' ,'both')";
             GetPerson(this.localQuery);
             this._conn.Close();
         }
@@ -128,6 +128,10 @@ namespace Malshinon
             MySqlDataReader reader = this.cmd.ExecuteReader();
             try
             {
+                if (!reader.Read())
+                {
+                    this.peopleList = new List<Person>();
+                }
                 while (reader.Read())
                 {
                     int id = reader.GetInt32("id");

@@ -16,21 +16,23 @@ namespace Malshinon
         public string[] Choices { get; set; }
         public string Choice { get; set; }
         public int finalChoos { get; set; }
+        public string Massege { get; set; }
         public int Id { get; set; }
         public MenuSystem(int userCode)
         {
             this.UserCode = userCode;
             this.ManageCode = 12345;
-            this.Choices = new string[] {"Press :: 1 :: To show list of targets",
-                                         "Press :: 2 :: To Show list of dangerous targets",
-                                         "Press :: 3 :: To Show list of malshinim",
-                                         "Press :: 4 :: To Show list of potential malshinim",
-                                         "Press :: 5 :: To Show malshin by ID number",
-                                         "Press :: 6 :: To Show target by ID number",
-                                         "Press :: 7 :: To show dangerous target by target ID",
-                                         "Press :: 8 :: To Show list of reports",
-                                         "Press :: 9 :: To Show list of reports by malshin ID",
-                                         "Press :: 10 : To Show list of reports by target ID"
+            this.Massege = $"\n!!!--- No data was found for this request. ---!!!\n";
+            this.Choices = new string[] {"\nPress :: 1 :: To show list of targets",
+                                           "Press :: 2 :: To Show list of dangerous targets",
+                                           "Press :: 3 :: To Show list of malshinim",
+                                           "Press :: 4 :: To Show list of potential malshinim",
+                                           "Press :: 5 :: To Show malshin by ID number",
+                                           "Press :: 6 :: To Show target by ID number",
+                                           "Press :: 7 :: To show dangerous target by target ID",
+                                           "Press :: 8 :: To Show list of reports",
+                                           "Press :: 9 :: To Show list of reports by malshin ID",
+                                           "Press :: 10 : To Show list of reports by target ID"
             };
             this.Person = new PersonDAL();
             this.RealThreats = new RealThreatsManager();
@@ -86,7 +88,7 @@ namespace Malshinon
                     showResoultsOfReports();
                     break;
                 default:
-                    Console.WriteLine("Invalid selection");
+                    Console.WriteLine(this.Massege);
                     break;
             }
         }
@@ -110,7 +112,7 @@ namespace Malshinon
             }
             else
             {
-                Console.WriteLine("The list is empty");
+                Console.WriteLine(this.Massege);
             }
 
         }
@@ -126,7 +128,7 @@ namespace Malshinon
             }
             else
             {
-                Console.WriteLine("The list is empty");
+                Console.WriteLine(this.Massege);
             }
         }
 
@@ -149,7 +151,7 @@ namespace Malshinon
         {
             do
             {
-                Console.WriteLine($"!--- Please enter a number from the list. ---!\n");
+                Console.WriteLine($"\n!--- Please enter a number from the list. ---!\n");
                 this.Choice = Console.ReadLine();
                 if (int.TryParse(this.Choice, out int resoult))
                 {

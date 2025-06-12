@@ -64,6 +64,10 @@ namespace Malshinon
             {
                 this.cmd = new MySqlCommand(this._query, this._conn);
                 MySqlDataReader reader =  cmd.ExecuteReader();
+                if (!reader.Read())
+                {
+                    this.reportsList = new List<IntelReport>();
+                }
                 while (reader.Read())
                 {
                     int id = reader.GetInt32("id"); 
