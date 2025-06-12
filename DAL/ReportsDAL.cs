@@ -49,11 +49,11 @@ namespace Malshinon
                 while (reader.Read())
                 {
                     int id = reader.GetInt32("id"); 
-                    int reporter_id = reader.GetInt32("id"); 
-                    int target_id = reader.GetInt32("id"); 
+                    int reporterId = reader.GetInt32("reporter_id"); 
+                    int targetId = reader.GetInt32("target_id"); 
                     string text = reader.GetString("text"); 
                     DateTime timestamp = reader.GetDateTime("timestamp");
-                    reportsList.Add(new IntelReport(id, reporter_id, target_id, text, timestamp));
+                    this.reportsList.Add(new IntelReport(id, reporterId, targetId, text, timestamp));
                 }
             }
             catch (MySqlException ex)

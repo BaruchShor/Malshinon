@@ -89,7 +89,7 @@ namespace Malshinon
                     int numReports = reader.GetInt32("num_reports");
                     string secretCode = reader.GetString("secret_code");
                     string type = reader.GetString("type");
-                    peopleList.Add(new Person(id, firstName, lastName, numMention, numReports, secretCode, type));
+                    this.peopleList.Add(new Person(id, firstName, lastName, numMention, numReports, secretCode, type));
                 }
             }
             catch (MySqlException ex)

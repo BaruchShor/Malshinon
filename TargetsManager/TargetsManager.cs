@@ -47,7 +47,7 @@ namespace Malshinon
 
         public bool IsTheTargetDangerous()
         {
-            if (this.ReportsSelected.GetMinuteDifference() <= 15 && GetNumMention() >= 3)
+            if (this.ReportsSelected.GetMinuteDifference() <= 15 && GetNumMention() >= 3 || this.peopleList[0].NumMentions >= 20)
             {
                 this.IsDangerous = true;
                 return this.IsDangerous;

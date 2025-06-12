@@ -29,8 +29,12 @@ namespace Malshinon
 
         public int GetMinuteDifference()
         {
-            TimeSpan disdans = this.reportsList[this.reportsList.Count() - 1].DateTime - this.reportsList[0].DateTime;
-            return (int)Math.Ceiling(disdans.TotalMinutes);
+            if(this.reportsList.Count >= 3)
+            {
+                TimeSpan disdans = this.reportsList[this.reportsList.Count() - 1].DateTime - this.reportsList[this.reportsList.Count() - 3].DateTime;
+                return (int)Math.Ceiling(disdans.TotalMinutes);
+            }
+            return 0;
         }
     }
 }

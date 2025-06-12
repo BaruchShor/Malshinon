@@ -17,13 +17,29 @@ namespace Malshinon
         public string[] TempData { get; set; }
 
         public List<string> MalshinData = new List<string>();
-
-        public string[] SystemMesseges = { "Please enter full Malshin name.", "Please enter a full target name.", "Please enter the full report." };
-
-        public string[] Keywords = { "MalshinFirstName", "MalshinLastName", "TargetFirstName", "TargetLastName", "Text" };
+        public string PromptFullNameOfMalshin { get; set; }
+        public string PromptFullNameOfTarget { get; set; }
+        public string PromptFullReport { get; set; }
+        public string MalshinFirstNameKey { get; set; }
+        public string MalshinLastNameKey { get; set; }
+        public string TargetFirstNameKey { get; set; }
+        public string TargetLastNameKey { get; set; }
+        public string TextKey { get; set; }
+        public string[] SystemMesseges { get; set; }
+        public string[] DataDictKeywords { get; set; }
 
         public AddingReports()
         {
+            this.PromptFullNameOfMalshin = "Please enter full Malshin name.";
+            this.PromptFullNameOfTarget = "Please enter a full target name.";
+            this.PromptFullReport = "Please enter the full report.";
+            this.MalshinFirstNameKey = "MalshinFirstName";
+            this.MalshinLastNameKey = "MalshinLastName";
+            this.TargetFirstNameKey = "TargetFirstName";
+            this.TargetLastNameKey = "TargetLastName";
+            this.TextKey = "Text";
+            this.SystemMesseges = new string[] { this.PromptFullNameOfMalshin, this.PromptFullNameOfTarget, this.PromptFullReport };
+            this.DataDictKeywords = new string[] { this.MalshinFirstNameKey, this.MalshinLastNameKey, this.TargetFirstNameKey, this.TargetLastNameKey, this.TextKey };
         }
 
         private List<string> GetDataFromMalshin()
@@ -68,9 +84,9 @@ namespace Malshinon
         {
             try
             {
-                for(int i = 0; i < this.Keywords.Length; i++)
+                for(int i = 0; i < this.DataDictKeywords.Length; i++)
                 {
-                    this.ReportData.Add(this.Keywords[i], this.MalshinData[i]);
+                    this.ReportData.Add(this.DataDictKeywords[i], this.MalshinData[i]);
                 }
             }
             catch (Exception ex)
