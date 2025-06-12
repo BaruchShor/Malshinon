@@ -32,10 +32,12 @@ namespace Malshinon
 
         public void ShowReport()
         {
-            Console.WriteLine($"Report id : {this.ReporterId}:\n" +
-                              $"Target id : {this.TargetId}\n" +
-                              $"Text : {this.Text}\n" +
-                              $"Date time: {this.DateTime}");
+            Console.WriteLine($"===================================\n" +
+                              $"Reporter ID :: {this.ReporterId}:\n" +
+                              $"Target ID   :: {this.TargetId}:\n" +
+                              $"Text        :: {this.Text}:\n" +
+                              $"Date time   :: {this.DateTime}:\n" +
+                              $"===================================\n");
         }
     }
 }
