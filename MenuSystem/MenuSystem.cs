@@ -12,6 +12,7 @@ namespace Malshinon
         public TargetsManager Targets { get; set; }
         public RealThreatsManager RealThreats { get; set; }
         public int UserCode { get; set; }
+        public int ManageCode { get; set; }
         public string[] Choices { get; set; }
         public string Choice { get; set; }
         public int finalChoos { get; set; }
@@ -19,6 +20,7 @@ namespace Malshinon
         public MenuSystem(int userCode)
         {
             this.UserCode = userCode;
+            this.ManageCode = 12345;
             this.Choices = new string[] {"Press :: 1 :: To show list of targets",
                                          "Press :: 2 :: To Show list of dangerous targets",
                                          "Press :: 3 :: To Show list of malshinim",
@@ -88,7 +90,7 @@ namespace Malshinon
             }
         }
 
-        public void DisplayMenu()
+        public void DisplayManageMenu()
         {
             do
             {
@@ -155,6 +157,19 @@ namespace Malshinon
         public void MalshinMenu()
         {
             DisplayAddReportSystem();
+        }
+
+        public void ControlMenu()
+        {
+            if(this.UserCode == this.ManageCode)
+            {
+                DisplayManageMenu();
+            }
+            else
+            {
+                MalshinMenu();
+            }
+
         }
     }
 }
