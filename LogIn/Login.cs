@@ -13,6 +13,7 @@ namespace Malshinon
 
         public void LogIn()
         {
+            Console.WriteLine($"@@@@ Pleas enter your password @@@@\n");
             this.Password = Convert.ToInt32(Console.ReadLine());
             Menu = new MenuSystem(this.Password);
             Menu.ControlMenu();
