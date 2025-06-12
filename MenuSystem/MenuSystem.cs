@@ -33,6 +33,7 @@ namespace Malshinon
                                          "Press :: 10 : To Show list of reports by target ID"
             };
             this.Person = new PersonDAL();
+            this.RealThreats = new RealThreatsManager();
         }
 
         public void ManagerMenu()
@@ -100,26 +101,49 @@ namespace Malshinon
 
         public void showResoultsOfPeople()
         {
-            foreach(Person person in this.Person.peopleList)
+            if(this.Person.peopleList.Count() > 0)
             {
-                person.ShowPerson();
+                foreach (Person person in this.Person.peopleList)
+                {
+                    person.ShowPerson();
+                }
             }
+            else
+            {
+                Console.WriteLine("The list is empty");
+            }
+
         }
 
         public void showResoultsOfReports()
         {
-            foreach (IntelReport report in this.reportsList)
+            if(this.reportsList.Count > 0)
             {
-                report.ShowReport();
+                foreach (IntelReport report in this.reportsList)
+                {
+                    report.ShowReport();
+                }
+            }
+            else
+            {
+                Console.WriteLine("The list is empty");
             }
         }
 
         public void showResoultsOfRealThreats()
         {
-            foreach (RealThreats realThreats in this.RealThreats.realThreatsList)
+            if(this.RealThreats.realThreatsList.Count() > 0)
             {
-                realThreats.ShowRealThreats();
+                foreach (RealThreats realThreats in this.RealThreats.realThreatsList)
+                {
+                    realThreats.ShowRealThreats();
+                }
             }
+            else
+            {
+                Console.WriteLine("The list is empty");
+            }
+
         }
         public int GetChoiceFromManager()
         {
@@ -136,12 +160,13 @@ namespace Malshinon
                     this.finalChoos = 0;
                     break;
                 }
-            } while (this.finalChoos < 0 || this.finalChoos > 9);
+            } while (this.finalChoos < 0 || this.finalChoos > this.Choices.Length);
             return this.finalChoos;
         }
 
         public int GetId()
         {
+            int secsses = 0;
             do
             {
                 Console.WriteLine($"\n!--- Please enter an ID number . ---!\n");
@@ -149,8 +174,9 @@ namespace Malshinon
                 if (int.TryParse(this.Choice, out int resoult))
                 {
                     this.Id = Convert.ToInt32(this.Choice);
+                    secsses = 1;
                 }
-            } while (this.finalChoos < 0 || this.finalChoos > 9);
+            } while (secsses == 0);
             return this.Id;
         }
 

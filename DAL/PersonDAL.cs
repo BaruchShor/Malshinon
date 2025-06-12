@@ -52,7 +52,7 @@ namespace Malshinon
         public void GetAllTargets()
         {
             this._conn.Open();
-            this.localQuery = $"SELECT * FROM people WHERE type = 'target' OR type = ,'both'";
+            this.localQuery = $"SELECT * FROM people WHERE type = 'target' OR type = 'both'";
             GetPerson(this.localQuery);
             this._conn.Close();
         }
@@ -60,7 +60,7 @@ namespace Malshinon
         public void GetTargetById(int id)
         {
             this._conn.Open();
-            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'target' OR type = ,'both'";
+            this.localQuery = $"SELECT * FROM people WHERE id = '{id}' AND type = 'target' OR type = 'both'";
             GetPerson(this.localQuery);
             this._conn.Close();
         }
